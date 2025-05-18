@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Zayed - Interactive Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accenture-purple: #A100FF;
+            --accenture-dark: #000036;
+            --accenture-light: #F5F0FF;
+            --accenture-gray: #6B6B6B;
+            --accenture-blue: #0070AD;
+            --white: #FFFFFF;
+            --black: #000000;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--accenture-dark);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: var(--accenture-dark);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accenture-purple);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(161, 0, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(161, 0, 255, 0.4);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .title {
+            color: var(--accenture-purple);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(161, 0, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            color: var(--accenture-dark);
+            font-weight: 500;
+        }
+        
+        .contact-item:hover {
+            background: rgba(161, 0, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .contact-item i {
+            color: var(--accenture-purple);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            background: rgba(161, 0, 255, 0.3);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social-link:hover {
+            background: var(--accenture-purple);
+            transform: translateY(-5px);
+        }
+        
+        section {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--accenture-purple);
+        }
+        
+        h2 {
+            color: var(--accenture-purple);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accenture-purple);
+        }
+        
+        h3 {
+            color: var(--accenture-dark);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section-content {
+            padding-left: 0.5rem;
+        }
+        
+        .education-item, .project-item, .certification-item, .achievement-item {
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accenture-light);
+            transition: all 0.3s ease;
+        }
+        
+        .education-item:hover, .project-item:hover, .certification-item:hover, .achievement-item:hover {
+            border-left: 2px solid var(--accenture-purple);
+            transform: translateX(5px);
+        }
+        
+        .education-header, .project-header, .certification-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        
+        .date {
+            color: var(--accenture-gray);
+            font-weight: 500;
+        }
+        
+        p {
+            margin-bottom: 0.5rem;
+            color: var(--accenture-gray);
+            line-height: 1.7;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-list {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .skill-item {
+            background: var(--accenture-light);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--accenture-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: var(--accenture-purple);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--accenture-purple);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(161, 0, 255, 0.2);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .download-btn:hover {
+            background: var(--accenture-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(161, 0, 255, 0.3);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .project-link {
+            color: var(--accenture-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-link:hover {
+            color: var(--accenture-blue);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--accenture-gray);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--accenture-light);
+        }
+        
+        /* Animation on scroll */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animation delays */
+        section:nth-child(1) { transition-delay: 0.1s; }
+        section:nth-child(2) { transition-delay: 0.2s; }
+        section:nth-child(3) { transition-delay: 0.3s; }
+        section:nth-child(4) { transition-delay: 0.4s; }
+        section:nth-child(5) { transition-delay: 0.5s; }
+        section:nth-child(6) { transition-delay: 0.6s; }
+        section:nth-child(7) { transition-delay: 0.7s; }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skills-container {
+                flex-direction: column;
+            }
+            
+            .education-header, .project-header, .certification-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .date {
+                margin-bottom: 0.5rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="zayed_imresizer.jpg" alt="Mohammad Zayed" class="profile-img" id="profileImg">
+            <h1>MOHAMMED ZAYED</h1>
+            <div class="title">Computer Science Engineer | AWS Certified</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 6362560624</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Karnataka, Ballari-583102</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>mdzayed.bng@gmail.com</span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/zayedmd/" class="social-link" id="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Zayed2022" class="social-link" id="github"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="objective">
+            <h2>OBJECTIVE</h2>
+            <div class="section-content">
+                <p>As a Computer Science student with a solid foundation in software development and hands-on experience, I am passionate about applying academic knowledge to real-world projects. I am eager to contribute to innovative solutions, seeking an opportunity to gain practical experience, enhance technical skills, and contribute to impactful software development while continuously learning and growing in a dynamic environment.</p>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2>EDUCATION</h2>
+            <div class="section-content">
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3>B.E in Computer Science</h3>
+                        <span class="date">2021-2025</span>
+                    </div>
+                    <p>BITM, Ballari</p>
+                    <p>CGPA: 9.812</p>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3>Pre-University College (12th)</h3>
+                        <span class="date">2019-2021</span>
+                    </div>
+                    <p>Bellary Independent P.U. College, Ballari</p>
+                    <p>Results: 93%</p>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3>School</h3>
+                        <span class="date">2018</span>
+                    </div>
+                    <p>Basavarajeswari Public School and College, Ballari</p>
+                    <p>Results: 80%</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>SKILLS</h2>
+            <div class="section-content">
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Python</li>
+                            <li class="skill-item">Java</li>
+                            <li class="skill-item">C</li>
+                            <li class="skill-item">ABAP</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Databases</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">SQL</li>
+                            <li class="skill-item">MongoDB</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Cloud</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">AWS</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>Data Visualization</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">PowerBI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>PROJECTS</h2>
+            <div class="section-content">
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>FM Database Management System</h3>
+                    </div>
+                    <p>Developed a web application allows users to interact with a MySQL database to perform CRUD operations and generate SQL queries using a conversational AI model. The application is built using Streamlit and Python.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>Facial Emotion Recognition</h3>
+                    </div>
+                    <p>Developed a Facial Emotion Recognition system using a CNN model with the FER-13 dataset, achieving real-time emotion prediction via a Streamlit interface. Implemented image preprocessing, training, and prediction features with TensorFlow and Keras, allowing users to upload images for emotion analysis.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="project-header">
+                        <h3>Utility Tools Web Application</h3>
+                    </div>
+                    <p>This Streamlit web tool offers a suite of practical utilities, including a BMI calculator, number and unit converters, an age calculator, a password generator, and a quadratic equation solver. Built with Python, the application prioritizes a user-friendly interface and responsive design, ensuring a seamless experience across its various functionalities.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2>CERTIFICATIONS</h2>
+            <div class="section-content">
+                <div class="certification-item">
+                    <div class="certification-header">
+                        <h3>AWS Certified Cloud Practitioner (CLF-C02)</h3>
+                        <span class="date">2025</span>
+                    </div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="certification-header">
+                        <h3>EZ trainings and technology Python</h3>
+                        <span class="date">2023</span>
+                    </div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="certification-header">
+                        <h3>ICTACADEMY Power BI @2025</h3>
+                        <span class="date">2023</span>
+                    </div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="certification-header">
+                        <h3>jai balaya College DSA</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="achievements">
+            <h2>ACHIEVEMENTS</h2>
+            <div class="section-content">
+                <div class="achievement-item">
+                    <p><i class="fas fa-trophy" style="color: var(--accenture-purple); margin-right: 0.5rem;"></i> Won 1st place in the Coding competition held by the IEEE Event at BITM.</p>
+                </div>
+                <div class="achievement-item">
+                    <p><i class="fas fa-chalkboard-teacher" style="color: var(--accenture-purple); margin-right: 0.5rem;"></i> Conducted a 2-Day Workshop on Power BI Basics for the CSE Department at BITM.</p>
+                </div>
+            </div>
+        </section>
+        
+        <div style="text-align: center;">
+            <button class="download-btn" id="downloadResume"><i class="fas fa-download" style="margin-right: 0.5rem;"></i> Download Resume (PDF)</button>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="year"></span> Mohammad Zayed. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Download button functionality
+        document.getElementById('downloadResume').addEventListener('click', function() {
+            // In a real implementation, this would download a PDF version
+            window.open('resume.pdf', '_blank');
+        });
+        
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Profile image click effect
+        document.getElementById('profileImg').addEventListener('click', function() {
+            this.classList.toggle('profile-img-large');
+        });
+    </script>
+</body>
+</html>
